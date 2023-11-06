@@ -1,0 +1,4 @@
+#select-activities, #select-activities-label, #activity-details, #confirmation-message, #e-ticket-form{
+    visibility: hidden;
+}
+
