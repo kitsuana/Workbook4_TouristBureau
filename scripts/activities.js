@@ -2,6 +2,7 @@
 
 let selectCategoriesEl = document.getElementById("select-categories");
 let selectActivitiesEl = document.getElementById("select-activities");
+let activityDetails = document.getElementById("activity-details");
 let eTicketForm = document.getElementById("e-ticket-form");
 
 window.onload = function(){
@@ -10,12 +11,12 @@ window.onload = function(){
     selectCategoriesEl.onchange = function(){
         let selectActivitiesLabel = document.getElementById("select-activities-label");
         eTicketForm.style.visibility = "hidden";
+        activityDetails.style.visibility = "hidden";
         if(selectCategoriesEl.value === "Select One"){
             console.log("trigger");
             selectActivitiesLabel.style.visibility = "hidden";
             selectActivitiesEl.style.visibility = "hidden";
         } else {
-            
             selectActivitiesLabel.style.visibility = "visible";
             selectActivitiesEl.style.visibility = "visible";
             selectActivitiesEl.options.length = "0";
@@ -25,7 +26,7 @@ window.onload = function(){
 
             for(let activity of activities){
                 if(activity.category === selectCategoriesEl.value){
-                    let activityOption = new Option(activity.name, activity.price);
+                    let activityOption = new Option(activity.name);
                     selectActivitiesEl.appendChild(activityOption);
                     
                 }
@@ -34,20 +35,29 @@ window.onload = function(){
     }
 
     selectActivitiesEl.onchange = function(){
+        activityDetails.style.visibility = "hidden"; 
+        eTicketForm.style.visibility = "hidden";
 
         for(let activity of activities){
-            eTicketForm.style.visibility = "hidden";
+            console.log(selectActivitiesEl)
             if(activity.name === selectActivitiesEl.value){
-                let activityDetails = document.getElementById("activity-details");
                 activityDetails.style.visibility = "visible";
-                
-            }
-            console.log("trigger", selectActivitiesEl.value, selectActivitiesEl.value > 0);
-            if(selectActivitiesEl.value > 0){
-                
-                eTicketForm.style.visibility = "visible";
-            } else {
-                
+                let activityName = document.getElementById("activity-name");
+                let activityDescription = document.getElementById("activity-description");
+                let activityLocation = document.getElementById("activity-location");
+                let activityPrice = document.getElementById("activity-price");
+
+                activityName.innerHTML = activity.name;
+                activityDescription.innerHTML = activity.description;
+                activityLocation.innerHTML = activity.location;
+                activityPrice.innerHTML = `$${activity.price}`;
+                    
+                console.log("trigger", selectActivitiesEl.value, selectActivitiesEl.value > 0);
+                if(activity.price > 0){
+                    eTicketForm.style.visibility = "visible";
+                } else {
+                    
+                }
             }
         }
     }
@@ -65,7 +75,18 @@ function populateCategoryDropdown(){
     
 }
 
+// function populateActivityDetails(selectedActivity){
+//     let activityName = document.getElementById("activity-name");
+//     let activityDescription = document.getElementById("activity-description");
+//     let activityLocation = document.getElementById("activity-location");
+//     let activityPrice = document.getElementById("activity-price");
 
+//     activityName.innerHTML = activity.name;
+//     activityDescription.innerHTML = activity.description;
+//     activityLocation.innerHTML = activity.location;
+//     activityPrice.innerHTML = `$${activity.price}`;
+
+// }
 
 let activities = [
    {
