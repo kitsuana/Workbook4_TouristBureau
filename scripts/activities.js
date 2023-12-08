@@ -13,7 +13,6 @@ window.onload = function(){
         eTicketForm.style.visibility = "hidden";
         activityDetails.style.visibility = "hidden";
         if(selectCategoriesEl.value === "Select One"){
-            console.log("trigger");
             selectActivitiesLabel.style.visibility = "hidden";
             selectActivitiesEl.style.visibility = "hidden";
         } else {
@@ -52,7 +51,6 @@ window.onload = function(){
                 activityLocation.innerHTML = activity.location;
                 activityPrice.innerHTML = `$${activity.price}`;
                     
-                console.log("trigger", selectActivitiesEl.value, selectActivitiesEl.value > 0);
                 if(activity.price > 0){
                     eTicketForm.style.visibility = "visible";
                 } else {

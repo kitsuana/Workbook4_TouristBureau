@@ -28,6 +28,7 @@ body, html {
 .navbar, .navbar-expand-lg {
     backdrop-filter: blur(10px);
     background-color: rgba(190, 225, 247, 0.416);
+    overflow: hidden;
 }
 
 main{
